@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-import { ProductModel } from "../../models/responses/ProductModel";
+import { ProductModel } from "../../models/Responses/ProductModel";
 import "./ProductCard.css"
 
 type ProductCardProps = {
