@@ -11,15 +11,16 @@ function App(): ReactElement {
 	return (
 		<div>
 		<BrowserRouter>
-
 		<CustomNavbar/>
 
+		
 			<Routes>
 				<Route path="/" element={<Homepage />}></Route>
 				<Route path="/product-detail/:id" element={<ProductDetail />}></Route>
 				<Route path="/add-product" element={<AddProduct />}></Route>
 				<Route path="/products" element={<Products />}></Route>
 			</Routes>
+	
 		</BrowserRouter>
 		</div>
 	);

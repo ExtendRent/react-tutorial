@@ -32,9 +32,12 @@
   }
 
 .custom-arrow {
+height: 50%;
+margin-top: 20%;
+}
+.custom-arrow:hover{
   background-color: rgba(0, 0, 0, 0.1); /* Dış kısımın rengi (siyah) */
   color: white; /* İç kısımın rengi (beyaz) */
-
 }
 
 .action-row {

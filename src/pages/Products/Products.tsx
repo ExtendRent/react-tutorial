@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import {ProductModel} from "../../models/Responses/ProductModel.ts";
 import ProductCard from "../../components/ProductCard/ProductCard.tsx";
 import ProductService from "../../services/ProductService.ts";
-
+import ProductCard2 from "../../components/ProductCard/ProductCard2.tsx";
+import "./Products.css";
 type Props = {};
 
 const Products = (props: Props) => {
@@ -20,12 +21,12 @@ const Products = (props: Props) => {
 	};
 
 	return (
-        <div className="bg-dark">
-		<div className="container">
-			<div className="row">
+        <div className="page-bg ">
+		<div className="container page-margin-top">
+			<div className="row page-padding-right-left">
 				{products.map(product => (
 					<div key={product.id} className="col-3">
-						<ProductCard product={product} />
+						<ProductCard2 product={product} />
 					</div>
 				))}
 			</div>

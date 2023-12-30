@@ -1,37 +1,83 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {ProductModel} from "../../models/Responses/ProductModel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+import { ProductModel } from "../../models/Responses/ProductModel";
+import "./DetailedPCard.css"
 
-type Props = {
-	product: ProductModel;
-	title?: string;
+type ProductCardProps = {
+  product: ProductModel;
+  title?: string;
 };
 
-// * ? => Bir alanı nullable yapar
-// * ! => Nullable alan içerisinden veri okurken null değilse kontrolü yapar.
+const CustomNextArrow = (props: any) => (
+  <button
+    {...props}
+    className="carousel-control-next custom-arrow"
+    type="button"
+    aria-label="Next"
+  >
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+);
 
+const CustomPrevArrow = (props: any) => (
+  <button
+    {...props}
+    className="carousel-control-prev custom-arrow"
+    type="button"
+    aria-label="Previous"
+  >
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+);
 
-const ProductCard = (props: Props) => {
-	return (
-		<div className="card">
-			<img
-				src={props.product.thumbnail}
-				className="card-img-top img-fluid"
-				alt="..."
-			/>
+const ProductCard: React.FC<ProductCardProps> = (props) => {
+  const { product } = props;
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+  };
+
+  return (
+    
+    <div className="card ">
+      <Slider {...sliderSettings}>
+        {product.images.map((image, index) => (
+          <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+            
+            <Link to={`/product-detail/${product.id}`}>
+            <img
+              src={image}
+              className="card-img"
+              alt={`Product Image ${index + 1}`}
+            />
+        </Link>
+            
+          </div>
+        ))}
+      </Slider>
+      <div className="card">
 			<div className="card-body">
 				<h5 className="card-title">{props.product.title}</h5>
 				<p className="card-text">{props.product.description}</p>
-				<Link
-					to={"/product-detail/" + props.product.id}
-					className="btn btn-primary"
-				>
-					Detail
-				</Link>
-				<button className="btn btn-danger">Sil</button>
+				<button className="btn btn-danger card-button">Sil</button>
 			</div>
 		</div>
-	);
+		</div>
+  );
 };
 
 export default ProductCard;
+
+
+
